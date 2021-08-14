@@ -1,2 +1,16 @@
 # nodejs-folder-structure
-this repository contains the nodejs folder structure for handling large project
+
+this repository contains the nodejs folder structure for handling large project.
+
+**Steps to be followed in making Typescript and Nodejs project setup**
+
+1. Install Typescript as a global dependency in your system.
+2. Initialize the project with typescript tsc --init
+3. Chnage the 'outDir' and 'rootDir' in tsconfig.json file and also change the module resolution: true.
+4. Make project setup - npm init
+5. Install dependencies - express; typescript, ts-node nodemon, @types/express, @types/node
+6. configure your scripts in package.json
+   - start: "node dist/app.js"
+   * dev: "node src/app.ts"
+   * build: "tsc -p ."
+7. Next step is to run your script with command
