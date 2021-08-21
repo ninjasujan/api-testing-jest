@@ -1,25 +1,20 @@
 import http from "http";
-import { Server } from "socket.io";
 import config from "./config";
 import app from "./app";
+import socket from "./socket";
 
 const createServer = async () => {
   const server = http.createServer(app);
 
-  const io = new Server(server, {
-    maxHttpBufferSize: 7e6,
-  });
-
-  io.on("connection", (socket) => {
-    console.log("SOCKET CONNECTED.");
-  });
+  // socket connections
+  socket(server);
 
   server.listen(config.PORT, () => {
-    console.log("SERVER RUNNING.");
+    console.log("server running.");
   });
 
   server.on("error", () => {
-    console.log("SERVER ERROR.");
+    console.log("server error.");
   });
 };
 

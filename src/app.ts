@@ -1,5 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from "express";
-import middlewareLoader from "./Loaders";
+import middlewareLoader from "./static-middleware";
 import mainRoute from "./api/main.route";
 
 const app: Application = express();
