@@ -3,19 +3,15 @@ import config from "./config";
 import app from "./app";
 import socket from "./socket";
 
-const createServer = async () => {
-  const server = http.createServer(app);
+const server = http.createServer(app);
 
-  // socket connections
-  socket(server);
+// socket connections
+socket(server);
 
-  server.listen(config.PORT, () => {
-    console.log("server running.");
-  });
+server.listen(config.PORT, () => {
+	console.log("server running.");
+});
 
-  server.on("error", () => {
-    console.log("server error.");
-  });
-};
-
-createServer();
+server.on("error", () => {
+	console.log("server error.");
+});
