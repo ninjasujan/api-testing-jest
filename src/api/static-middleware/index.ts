@@ -4,5 +4,11 @@ import mongoose from "./mongoose";
 
 export default async (app: Application) => {
 	expressLoader(app);
-	await mongoose();
+	mongoose()
+		.then((res) => {
+			console.log("[Mongoose connection] success");
+		})
+		.catch((err) => {
+			console.log("[Mongoose Error]", err);
+		});
 };
