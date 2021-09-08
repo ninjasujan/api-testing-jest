@@ -15,7 +15,3 @@ server.listen(process.env.PORT, () => {
 server.on("error", (error) => {
 	console.log("[Express server] error", error);
 });
-
-process.on("SIGINT", () => {
-	process.exit();
-});

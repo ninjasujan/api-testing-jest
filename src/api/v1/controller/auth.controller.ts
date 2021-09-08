@@ -18,7 +18,7 @@ const loginHandler = async (
 			const message = errors.array()[0].msg;
 			throw new Error(message);
 		}
-
+		console.log("login handler");
 		const response = await authService.login(email);
 		res.status(200).json(sendResponse(200, response));
 	} catch (error) {
