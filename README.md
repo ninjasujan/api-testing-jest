@@ -17,4 +17,4 @@
    * build: "tsc -p ."
 7. Next step is to run your script with command
 
-## END
+##

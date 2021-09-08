@@ -15,11 +15,18 @@ app.use("/health", (req: Request, res: Response, next: NextFunction) =>
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 	const message = err.message || "something went wrong.!";
 	const status = 500;
-	res.status(status).json({ message });
+	// sending slack or something
+	res.status(status).json({
+		statusCode: status,
+		status: "error",
+		data: {
+			message,
+		},
+	});
 });
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-	res.status(404).json({ message: "Invalid api endpoint" });
+	res.status(404).json({ message: "not found" });
 });
 
 export default app;

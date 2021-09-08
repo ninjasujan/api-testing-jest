@@ -1,5 +1,5 @@
 import http from "http";
-import config from "./config";
+
 import app from "./app";
 import socket from "./socket";
 
@@ -8,10 +8,14 @@ const server = http.createServer(app);
 // socket connections
 socket(server);
 
-server.listen(config.PORT, () => {
-	console.log("server running.");
+server.listen(process.env.PORT, () => {
+	console.log("[Express server] running");
 });
 
-server.on("error", () => {
-	console.log("server error.");
+server.on("error", (error) => {
+	console.log("[Express server] error", error);
+});
+
+process.on("SIGINT", () => {
+	process.exit();
 });
