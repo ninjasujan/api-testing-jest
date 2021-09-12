@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
 
+import sendResponse from "../../../lib/response/success.response";
+
 import AuthService from "../../../service/auth.service";
 const authService = new AuthService();
-
-import sendResponse from "../../../lib/response/success.response";
 
 const loginHandler = async (
 	req: Request,
@@ -18,7 +18,6 @@ const loginHandler = async (
 			const message = errors.array()[0].msg;
 			throw new Error(message);
 		}
-		console.log("login handler");
 		const response = await authService.login(email);
 		res.status(200).json(sendResponse(200, response));
 	} catch (error) {

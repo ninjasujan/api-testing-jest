@@ -1,7 +1,7 @@
-export default function (statusCode: number, data: any) {
+export default function (status: number, data: any) {
 	return {
-		status: "success",
-		statusCode,
+		success: true,
+		status,
 		data,
 	};
 }

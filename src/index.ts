@@ -1,17 +1,16 @@
-import http from "http";
+import * as path from "path";
+import * as dotenv from "dotenv";
+import App from "./providers/App";
+import Locals from "./providers/Locals";
+dotenv.config({ path: path.join(__dirname, "../.env") });
 
-import app from "./app";
-import socket from "./socket";
+/**
+ * Connecting Database
+ */
 
-const server = http.createServer(app);
+App.loadDatabase(Locals.config().mongoURI);
 
-// socket connections
-socket(server);
-
-server.listen(process.env.PORT, () => {
-	console.log("[Express server] running");
-});
-
-server.on("error", (error) => {
-	console.log("[Express server] error", error);
-});
+/**
+ * Connecting server
+ */
+App.loadServer();

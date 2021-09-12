@@ -1,0 +1,27 @@
+import express, { Application } from "express";
+import cors from "cors";
+import compress from "compression";
+import morgan from "morgan";
+import expressJwt from "express-jwt";
+import Locals from "../../providers/Locals";
+
+class Http {
+	public static mount(_express: Application): Application {
+		_express.disable("x-powered-by");
+		_express.use(cors());
+		_express.use(compress());
+		_express.use(express.json());
+		_express.use(express.urlencoded({ extended: true }));
+		expressJwt({
+			secret: Locals.config().apiSecret,
+			algorithms: ["HS256"],
+		}).unless({ path: [{ url: "/api/v1/user/login", method: ["POST"] }] });
+
+		if (Locals.config().environment === "dev") {
+			_express.use(morgan("dev"));
+		}
+		return _express;
+	}
+}
+
+export default Http;

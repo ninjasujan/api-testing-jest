@@ -1,32 +1,32 @@
 import { Document, model, Schema } from "mongoose";
 
-enum platform {
-  android = "android",
-  web = "web",
-  ios = "ios",
+enum Platform {
+	android = "android",
+	web = "web",
+	ios = "ios",
 }
 
-interface userInterface extends Document {
-  name: string;
-  email: string;
-  platform: platform;
+interface UserInterface extends Document {
+	name: string;
+	email: string;
+	platform: string;
 }
 
-const userSchema = new Schema<userInterface>({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  platform: {
-    type: String,
-    default: platform.web,
-    enum: Object.values(platform),
-  },
+const userSchema = new Schema<UserInterface>({
+	name: {
+		type: String,
+		required: true,
+	},
+	email: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	some: {
+		type: String,
+		default: Platform.web,
+		enum: Object.values(Platform),
+	},
 });
 
-export default model<userInterface>("user", userSchema);
+export default model<UserInterface>("user", userSchema);
