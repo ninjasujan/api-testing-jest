@@ -1,7 +1,8 @@
+import express, { Router } from "express";
+
 import authRoute from "./auth.route";
 import uploadRoute from "./upload.route";
 
-import express, { Router } from "express";
 const route: Router = express.Router();
 
 route.use("/auth", authRoute);

@@ -10,12 +10,14 @@ class SocketHandler extends BaseHandler {
 		this.socket.on("disconnected", this.socketDisconnected);
 	}
 
-	private socketDiconnecting() {
-		// do some operation
+	private socketDiconnecting(reason: any) {
+		/* eslint-disable-next-line no-console */
+		console.log("[Socket disconnecting]", reason);
 	}
 
-	private socketDisconnected() {
-		// do some operation
+	private socketDisconnected(reason: any) {
+		/* eslint-disable-next-line no-console */
+		console.log("[Socket disconnected]", reason);
 	}
 }
 

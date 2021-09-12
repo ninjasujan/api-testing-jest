@@ -9,8 +9,10 @@ class UploadHandler extends BaseHandler {
 		this.socket.on("start_upload_object", this.uploadObject);
 	}
 
-	private uploadObject() {
-		// do some operation
+	private uploadObject(data: any, cb: Function) {
+		/* eslint-disable-next-line no-console */
+		console.log("[Socket event] - start_upload_object");
+		cb({ success: true, status: 200, data: {} });
 	}
 }
 

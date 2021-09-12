@@ -1,7 +1,9 @@
-import express, { Router, Request, Response, NextFunction } from "express";
-const router: Router = express.Router();
+import express, { Router } from "express";
 import { body } from "express-validator";
+
 import authController from "../controller/auth.controller";
+
+const router: Router = express.Router();
 
 router.post(
 	"/login",
