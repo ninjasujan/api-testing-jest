@@ -1,6 +1,7 @@
 import http, { Server } from "http";
 import express, { Application } from "express";
 import route from "../api/main.route";
+import ExceptionHandler from "../exceptions/Handler";
 import httpMiddleware from "../api/middleware/http.middleware";
 import Locals from "./Locals";
 
@@ -28,6 +29,7 @@ class Express {
 
 	public mountRoute(): void {
 		this.express.use("/api", route);
+		this.express.use(ExceptionHandler.errorHandler);
 	}
 
 	public getExpress(): Server {
