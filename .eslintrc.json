@@ -23,6 +23,7 @@
 		"import/extensions": "off",
 		"no-shadow": "off",
 		"class-methods-use-this": "off",
-		"func-names": "off"
+		"func-names": "off",
+		"no-underscore-dangle": "off"
 	}
 }

@@ -16,8 +16,3 @@
    * dev: "node src/app.ts"
    * build: "tsc -p ."
 7. Next step is to run your script with command
-
-## Eslint setup for project
-
-1. Install dependencies `npm i --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin`
-2. run the command `npx eslint --init`
