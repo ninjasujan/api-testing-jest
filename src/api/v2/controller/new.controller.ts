@@ -1,5 +1,7 @@
 class New {
-  async someFunction() {}
+  async someFunction() {
+    var a;
+  }
 }
 
 export default New;
