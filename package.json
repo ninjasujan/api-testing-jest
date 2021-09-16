@@ -4,10 +4,12 @@
   "description": "this repository contains the nodejs folder structure for handling large project.",
   "main": "index.js",
   "scripts": {
-    "pretest": "eslint --ignore-path .gitignore .",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "lint": "eslint src",
+    "prettier:fix": "prettier --write .",
+    "prettier:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -65,10 +67,9 @@
     }
   },
   "lint-staged": {
-    "**/*.ts": [
-      "eslint --fix",
-      "pretty-quick -- staged",
-      "git add"
+    "src/**/*.ts": [
+      "npm prettier:fix",
+      "npm lint"
     ]
   }
 }
