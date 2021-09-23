@@ -1,6 +1,6 @@
 class New {
   async someFunction(name: string) {
-    var a = 15;
+    return name;
   }
 }
 
