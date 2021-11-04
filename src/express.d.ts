@@ -1,8 +1,8 @@
 interface JWTUser {
-  _id: string;
+    _id: string;
 }
 declare namespace Express {
-  export interface Request {
-    user: JWTUser;
-  }
+    export interface Request {
+        user: JWTUser;
+    }
 }

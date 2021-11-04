@@ -1,68 +1,62 @@
-import mongoose from "../providers/Database";
-import { platform } from "../constants/user.constants";
+import mongoose from '../providers/Database';
+import { genderType, platform, loginMethod } from '../constants/user.constants';
 
 export interface ILocation {
-	type: string;
-	coordinates: [number, number];
+    type: string;
+    coordinates: [number, number];
 }
 
-enum ISignUpMethod {
-	GOOGLE = "GOOGLE",
-	OTP = "OTP",
-	FACEBOOK = "FACEBOOK",
-}
-
-type GenderType = "male" | "fmale";
+type GenderType = 'MALE' | 'FEMALE';
 
 export interface IUser {
-	name: string;
-	emai: string;
-	mobileNumber: string;
-	age: number;
-	platform: string;
-	location: [ILocation];
-	gender: GenderType;
-	loginMethod: string;
+    name: string;
+    email: string;
+    mobile: number;
+    platform: string;
+    location: [ILocation];
+    gender: GenderType;
+    loginMethod: string;
 }
 
 export interface IUserModel extends IUser, mongoose.Document {}
 
 export const UserSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: true,
-	},
-	emai: {
-		type: String,
-		required: true,
-	},
-	mobileNumber: {
-		type: String,
-		required: true,
-	},
-	age: {
-		type: Number,
-		min: 13,
-		max: 70,
-	},
-	platform: {
-		type: String,
-		enum: Object.values(platform),
-	},
-	location: {
-		type: {
-			type: String,
-			enum: ["point"],
-		},
-		coordinates: [mongoose.Schema.Types.Decimal128],
-	},
-	gender: {
-		type: String,
-	},
-	loginMethod: {
-		type: String,
-		enum: Object.values(ISignUpMethod),
-	},
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    mobile: {
+        type: Number,
+        required: true,
+        unique: true,
+    },
+    platform: {
+        type: String,
+        enum: Object.values(platform),
+        default: platform.ANDROID,
+    },
+    location: {
+        type: {
+            type: String,
+            enum: ['point'],
+        },
+        coordinates: [Number],
+    },
+    gender: {
+        type: String,
+        enum: Object.values(genderType),
+        default: genderType.MALE,
+    },
+    loginMethod: {
+        type: String,
+        default: loginMethod.GOOGLE,
+        enum: Object.values(loginMethod),
+    },
 });
 
-export default mongoose.model<IUserModel>("User", UserSchema);
+export default mongoose.model<IUserModel>('User', UserSchema);
