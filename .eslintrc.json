@@ -24,6 +24,8 @@
         "no-shadow": "off",
         "class-methods-use-this": "off",
         "func-names": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/prefer-default-export": "off"
     }
 }

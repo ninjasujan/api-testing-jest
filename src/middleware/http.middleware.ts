@@ -14,10 +14,14 @@ class Http {
         _express.use(compress());
         _express.use(express.json());
         _express.use(express.urlencoded({ extended: true }));
-        expressJwt({
-            secret: Locals.config().apiSecret,
-            algorithms: ['HS256'],
-        }).unless({ path: [{ url: '/api/v1/user/login', method: ['POST'] }] });
+        _express.use(
+            expressJwt({
+                secret: Locals.config().apiSecret,
+                algorithms: ['HS256'],
+            }).unless({
+                path: [{ url: '/api/v1/auth/login', method: ['POST'] }],
+            }),
+        );
 
         if (Locals.config().environment === 'dev') {
             _express.use(morgan('dev'));

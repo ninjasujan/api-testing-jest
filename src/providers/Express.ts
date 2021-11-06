@@ -38,7 +38,11 @@ class Express {
         this.express.use(ExceptionHandler.errorHandler);
     }
 
-    public getExpress(): Server {
+    public getExpress(): Application {
+        return this.express;
+    }
+
+    public getServer(): Server {
         return this.server;
     }
 

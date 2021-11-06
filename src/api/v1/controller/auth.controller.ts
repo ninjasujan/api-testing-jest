@@ -37,9 +37,9 @@ class AuthController {
 
             res.status(200).json({
                 status: 'success',
-                message: 'User logged In',
-                token: token,
-                user: user,
+                message: 'user successfully logged in',
+                token,
+                user,
             });
         } catch (error) {
             next(error);
@@ -62,17 +62,26 @@ class AuthController {
             if (!user) {
                 throw new APIError('user not found for given id', 400);
             }
-            let update: { [key: string]: string } = {};
+            const update: { [key: string]: string } = {};
             if (mobile) {
-                update['mobile'] = mobile;
+                update.mobile = mobile;
             }
             if (name) {
-                update['name'] = name;
+                update.name = name;
             }
             if (!Object.values(update)) {
                 throw new APIError('no valid user field to update', 400);
             }
-            await UserModel.findByIdAndUpdate(userId, update);
+            const updatedUser = await UserModel.findByIdAndUpdate(
+                userId,
+                update,
+                { new: true },
+            );
+            res.status(200).json({
+                status: 'success',
+                message: 'user updated',
+                user: updatedUser,
+            });
         } catch (error) {
             next(error);
         }
