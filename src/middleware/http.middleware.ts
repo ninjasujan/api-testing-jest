@@ -1,9 +1,11 @@
+import swaggerUi from 'swagger-ui-express';
 import express, { Application } from 'express';
 import cors from 'cors';
 import compress from 'compression';
 import morgan from 'morgan';
 import expressJwt from 'express-jwt';
 import hemlet from 'helmet';
+import apiDocs from '../app/docs/index';
 import Locals from '../providers/Locals';
 
 class Http {
@@ -13,6 +15,7 @@ class Http {
         _express.use(hemlet());
         _express.use(compress());
         _express.use(express.json());
+        _express.use('/api/docs', swaggerUi.serve, swaggerUi.setup(apiDocs));
         _express.use(express.urlencoded({ extended: true }));
         _express.use(
             expressJwt({

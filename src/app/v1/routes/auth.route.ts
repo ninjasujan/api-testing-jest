@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { body } from 'express-validator';
+import { body, query, param } from 'express-validator';
 import {
     latitudeError,
     latitudeRange,
@@ -28,6 +28,18 @@ router.put(
     body('name', 'invalid name').isString(),
     body('mobile').isNumeric().isLength({ min: 10, max: 14 }),
     authController.updateUser,
+);
+
+router.get(
+    '/user',
+    query('mobile', 'invalid mobile number').notEmpty(),
+    authController.getUser,
+);
+
+router.get(
+    '/user/:name',
+    param('name', 'Invalid name in parameter'),
+    authController.getUserByName,
 );
 
 export default router;

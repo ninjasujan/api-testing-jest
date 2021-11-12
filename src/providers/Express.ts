@@ -1,6 +1,6 @@
 import http, { Server } from 'http';
 import express, { Application, Request, Response } from 'express';
-import route from '../api/main.route';
+import route from '../app/main.route';
 import ExceptionHandler from '../exceptions/Handler';
 import httpMiddleware from '../middleware/http.middleware';
 import Locals from './Locals';

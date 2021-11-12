@@ -86,6 +86,56 @@ class AuthController {
             next(error);
         }
     };
+
+    public getUser = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                throw new ValidatioError(errors);
+            }
+            const { mobile } = req.query;
+            const user = await UserModel.findOne({ mobile: Number(mobile) });
+            if (!user) {
+                throw new APIError('No user found for given mobile', 400);
+            }
+            res.status(200).json({
+                status: 'success',
+                message: 'User data',
+                data: user,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    public getUserByName = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                throw new ValidatioError(errors);
+            }
+            const { name } = req.params;
+            const user = await UserModel.findOne({ name });
+            if (!user) {
+                throw new APIError('No user found for given mobile', 400);
+            }
+            res.status(200).json({
+                status: 'success',
+                message: 'User data',
+                data: user,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
 }
 
 export default new AuthController();
